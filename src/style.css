@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#content {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 80px 1fr 50px ;
+    grid-template-areas: 
+        "header header"
+        "sidebar todolist"
+        "footer footer";
+}
+
+#header {
+    grid-area: header;
+    background-color: red;
+}
+
+#sidebar {
+    grid-area: sidebar;
+    background-color: green;
+}
+
+#todolist {
+    grid-area: todolist;
+    background-color: blue;
+}
+
+#footer {
+    grid-area: footer;
+    background-color: yellow;
+}
