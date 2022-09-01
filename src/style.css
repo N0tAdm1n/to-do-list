@@ -36,6 +36,13 @@ body {
     background-color: blue;
 }
 
+#addButton {
+    height: 50px;
+    width: 50px;
+    font-size: larger;
+    background-color: white;
+}
+
 #footer {
     grid-area: footer;
     background-color: yellow;

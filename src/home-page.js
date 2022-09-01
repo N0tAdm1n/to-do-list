@@ -12,11 +12,12 @@ export const homepage = () => {
   const todolist = document.createElement("div");
   todolist.id = "todolist";
 
-  todolist.appendChild(createForm());
+  //   todolist.appendChild(createForm());
 
   const addButton = document.createElement("div");
   addButton.id = "addButton";
   addButton.textContent = "+";
+  addButton.addEventListener("click", addButtonListener);
 
   todolist.appendChild(addButton);
 
@@ -27,15 +28,15 @@ export const homepage = () => {
   content.appendChild(footer);
 };
 
-const DOMeventListener = (() => {
-  const addButtonListener = () => {
-    const form = document.querySelector("#form");
-    form.classList.toggle("hidden");
-  };
+//add button event listener
+const addButtonListener = () => {
+  if (!document.querySelector("#form")) {
+    const addButton = document.querySelector("#addButton");
+    addButton.before(createForm());
+  }
+};
 
-  return { addButtonListener };
-})();
-
+//function to get input fom user
 const createForm = () => {
   //form
   const form = document.createElement("div");
@@ -54,6 +55,7 @@ const createForm = () => {
   const titleInput = document.createElement("input");
   titleInput.id = "titleInput";
   title.appendChild(titleInput);
+
   form.appendChild(title);
 
   //description
@@ -69,6 +71,7 @@ const createForm = () => {
   const descriptionInput = document.createElement("textarea");
   descriptionInput.id = "descriptionInput";
   description.appendChild(descriptionInput);
+
   form.appendChild(description);
 
   //duedate
@@ -86,6 +89,13 @@ const createForm = () => {
   dueDate.appendChild(dueDateInput);
 
   form.appendChild(dueDate);
+
+  //add button
+  const button = document.createElement("button");
+  button.textContent = "Add";
+  button.id = "button";
+
+  form.appendChild(button);
 
   return form;
 };
