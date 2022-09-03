@@ -1,4 +1,5 @@
 import { todoItem } from "./functions";
+import { createDefaultProjects } from "./projects";
 
 export const homepage = () => {
   const content = document.querySelector("#content");
@@ -9,6 +10,18 @@ export const homepage = () => {
 
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";
+  //
+  //
+  //default projects
+  const defaultProjects = createDefaultProjects();
+  defaultProjects.forEach((project) => {
+    const element = document.createElement("div");
+    element.classList.add("project");
+    element.textContent = project.getProjectName();
+
+    sidebar.appendChild(element);
+  });
+
   content.appendChild(sidebar);
 
   const todolist = document.createElement("div");
