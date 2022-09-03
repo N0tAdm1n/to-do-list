@@ -44,3 +44,41 @@ export const todoItem = () => {
     initTodoItem,
   };
 };
+
+// projects module
+export const projects = (() => {
+  let _projectList = [];
+
+  const getProjectList = () => _projectList;
+
+  const addProject = (project) => {
+    _projectList.push(project);
+  };
+
+  return { getProjectList, addProject };
+})();
+
+// project factory
+export const project = () => {
+  let _name = "";
+  let _todolist = [];
+
+  const createProject = (name) => {
+    _name = name;
+  };
+
+  const getProjectName = () => _name;
+
+  const getProjectList = () => _todolist;
+
+  const addTodoItem = (item) => {
+    _todolist.push(item);
+  };
+
+  return {
+    createProject,
+    getProjectName,
+    getProjectList,
+    addTodoItem,
+  };
+};
