@@ -1,3 +1,5 @@
+import { todoItem } from "./functions";
+
 export const homepage = () => {
   const content = document.querySelector("#content");
 
@@ -11,8 +13,6 @@ export const homepage = () => {
 
   const todolist = document.createElement("div");
   todolist.id = "todolist";
-
-  //   todolist.appendChild(createForm());
 
   const addButton = document.createElement("div");
   addButton.id = "addButton";
@@ -33,6 +33,8 @@ const addButtonListener = () => {
   if (!document.querySelector("#form")) {
     const addButton = document.querySelector("#addButton");
     addButton.before(createForm());
+    submitButtonListener();
+    cancelButtonListener();
   }
 };
 
@@ -93,9 +95,40 @@ const createForm = () => {
   //add button
   const button = document.createElement("button");
   button.textContent = "Add";
-  button.id = "button";
-
+  button.id = "submit";
   form.appendChild(button);
 
+  //cancel button
+  const cancelButton = document.createElement("button");
+  cancelButton.id = "Cancel";
+  cancelButton.textContent = "Cancel";
+  form.appendChild(cancelButton);
+
   return form;
+};
+
+// event listener for submit button on form
+const submitButtonListener = () => {
+  const submitButton = document.querySelector("#submit");
+  submitButton.addEventListener("click", submitForm);
+};
+
+//function to submit the form
+const submitForm = () => {
+  const title = document.querySelector("#titleInput").textContent;
+
+  const newTodoItem = todoItem();
+  newTodoItem.initTodoItem(title, "", "", "");
+};
+
+// event listener for cancel button on form
+const cancelButtonListener = () => {
+  const cancelButton = document.querySelector("#Cancel");
+  cancelButton.addEventListener("click", removeForm);
+};
+//function to remove form
+const removeForm = () => {
+  const form = document.querySelector("#form");
+  form.innerHTML = "";
+  form.remove();
 };
