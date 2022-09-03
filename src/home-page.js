@@ -1,5 +1,5 @@
-import { todoItem } from "./functions";
-import { createDefaultProjects } from "./projects";
+import { todoItem, project } from "./functions";
+import { defaultProjects, relateProject } from "./projects";
 
 export const homepage = () => {
   const content = document.querySelector("#content");
@@ -13,16 +13,18 @@ export const homepage = () => {
   //
   //
   //default projects
-  const defaultProjects = createDefaultProjects();
-  defaultProjects.forEach((project) => {
-    const element = document.createElement("div");
-    element.classList.add("project");
-    element.textContent = project.getProjectName();
-
-    sidebar.appendChild(element);
+  const defaultProjectsDOM = defaultProjects.getDefaultProjects();
+  // console.log(defaultProjectsDOM);
+  defaultProjectsDOM.forEach((element) => {
+    const container = document.createElement("button");
+    container.textContent = element.getProjectName();
+    container.classList.add("project");
+    sidebar.appendChild(container);
   });
 
   content.appendChild(sidebar);
+
+  projectsListener();
 
   const todolist = document.createElement("div");
   todolist.id = "todolist";
@@ -144,4 +146,20 @@ const removeForm = () => {
   const form = document.querySelector("#form");
   form.innerHTML = "";
   form.remove();
+};
+//
+//
+//event listener for all projects
+const projectsListener = () => {
+  const allProjects = Array.from(document.querySelectorAll(".project"));
+  allProjects.forEach((element) => {
+    element.addEventListener("click", () => {
+      switchProject(element);
+    });
+  });
+};
+
+//function to switch projects tab
+const switchProject = (element) => {
+  const currentProject = relateProject(element);
 };
