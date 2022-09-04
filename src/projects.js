@@ -1,31 +1,46 @@
-import { project } from "./functions";
+import todoItem from "./todo-item";
 
-export const defaultProjects = (() => {
-  let _defaultProjects = [];
+const projects = (() => {
+  let _projectList = [];
 
-  const defaultProject1 = project();
-  defaultProject1.createProject("1");
-  _defaultProjects.push(defaultProject1);
+  const getProjectList = () => _projectList;
 
-  const defaultProject2 = project();
-  defaultProject2.createProject("2");
-  _defaultProjects.push(defaultProject2);
+  const addProject = (project) => {
+    _projectList.push(project);
+  };
 
-  const defaultProject3 = project();
-  defaultProject3.createProject("3");
-  _defaultProjects.push(defaultProject3);
+  //project factory
+  const project = (name = "") => {
+    let _name = name;
+    let _todolist = [];
 
-  const getDefaultProjects = () => _defaultProjects;
+    const getProjectName = () => _name;
 
-  return { getDefaultProjects };
+    const getTodoList = () => _todolist;
+
+    const addTodoItem = (item) => {
+      _todolist.push(item);
+    };
+
+    return {
+      getProjectName,
+      getTodoList,
+      addTodoItem,
+    };
+  };
+
+  //
+
+  addProject(project("Default"));
+  const test = () => {
+    projects.getProjectList()[0].addTodoItem(todoItem("item1"));
+    const i = projects.getProjectList();
+    console.log(i[0].getTodoList()[0].getTitle());
+  };
+
+  return { getProjectList, addProject, test };
 })();
 
-//relate the projects in DOM to defaultProjects array
-export const relateProject = (item) => {
-  const arr = defaultProjects.getDefaultProjects();
-  arr.forEach((ele) => {
-    if (item.textContent === ele.getProjectName()) {
-      return ele;
-    }
-  });
-};
+//testing new logic
+
+export default projects;

@@ -1,5 +1,4 @@
-import { todoItem, project } from "./functions";
-import { defaultProjects, relateProject } from "./projects";
+import projects from "./projects";
 
 export const homepage = () => {
   const content = document.querySelector("#content");
@@ -10,21 +9,7 @@ export const homepage = () => {
 
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";
-  //
-  //
-  //default projects
-  const defaultProjectsDOM = defaultProjects.getDefaultProjects();
-  // console.log(defaultProjectsDOM);
-  defaultProjectsDOM.forEach((element) => {
-    const container = document.createElement("button");
-    container.textContent = element.getProjectName();
-    container.classList.add("project");
-    sidebar.appendChild(container);
-  });
-
   content.appendChild(sidebar);
-
-  projectsListener();
 
   const todolist = document.createElement("div");
   todolist.id = "todolist";
@@ -48,7 +33,7 @@ const addButtonListener = () => {
   if (!document.querySelector("#form")) {
     const addButton = document.querySelector("#addButton");
     addButton.before(createForm());
-    submitButtonListener();
+    // submitButtonListener();
     cancelButtonListener();
   }
 };
@@ -122,20 +107,6 @@ const createForm = () => {
   return form;
 };
 
-// event listener for submit button on form
-const submitButtonListener = () => {
-  const submitButton = document.querySelector("#submit");
-  submitButton.addEventListener("click", submitForm);
-};
-
-//function to submit the form
-const submitForm = () => {
-  const title = document.querySelector("#titleInput").textContent;
-
-  const newTodoItem = todoItem();
-  newTodoItem.initTodoItem(title, "", "", "");
-};
-
 // event listener for cancel button on form
 const cancelButtonListener = () => {
   const cancelButton = document.querySelector("#Cancel");
@@ -146,20 +117,7 @@ const removeForm = () => {
   const form = document.querySelector("#form");
   form.innerHTML = "";
   form.remove();
-};
-//
-//
-//event listener for all projects
-const projectsListener = () => {
-  const allProjects = Array.from(document.querySelectorAll(".project"));
-  allProjects.forEach((element) => {
-    element.addEventListener("click", () => {
-      switchProject(element);
-    });
-  });
-};
 
-//function to switch projects tab
-const switchProject = (element) => {
-  const currentProject = relateProject(element);
+  //testing
+  projects.test();
 };
