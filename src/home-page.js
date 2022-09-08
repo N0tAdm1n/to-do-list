@@ -242,24 +242,34 @@ const createTodoTile = (
   tile.dataset.itemId = itemId;
 
   const tileTitle = document.createElement("div");
-  tileTitle.id = "#tile-title";
+  tileTitle.classList.add("#tile-title");
   tileTitle.textContent = title;
   tile.appendChild(tileTitle);
 
   const tileDescription = document.createElement("div");
-  tileDescription.id = "#tile-description";
+  tileDescription.classList.add("#tile-description");
   tileDescription.textContent = description;
   tile.appendChild(tileDescription);
 
   const tileDueDate = document.createElement("div");
-  tileDueDate.id = "#tile-due-date";
+  tileDueDate.classList.add("#tile-due-date");
   tileDueDate.textContent = dueDate;
   tile.appendChild(tileDueDate);
 
   const tilePriority = document.createElement("div");
-  tilePriority.id = "#tile-priority";
+  tilePriority.classList.add("#tile-priority");
   tilePriority.textContent = priority;
   tile.appendChild(tilePriority);
+
+  const tileEditButton = document.createElement("button");
+  tileEditButton.classList.add("tile-edit-btn");
+  tileEditButton.textContent = "Edit";
+  tile.appendChild(tileEditButton);
+
+  const tileDeleteButton = document.createElement("button");
+  tileDeleteButton.classList.add("tile-delete-btn");
+  tileDeleteButton.textContent = "Delete";
+  tile.appendChild(tileDeleteButton);
 
   return tile;
 };
