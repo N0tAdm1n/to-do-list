@@ -1,6 +1,6 @@
 import projects from "./projects";
 
-const currentProject = 0;
+const currentProjectIndex = 0;
 export const homepage = () => {
   const content = document.querySelector("#content");
 
@@ -164,7 +164,7 @@ const cancelButtonListener = () => {
 //function to remove form
 const removeForm = () => {
   const form = document.querySelector("#form");
-  form.innerHTML = "";
+  // form.innerHTML = "";
   form.remove();
 };
 
@@ -176,7 +176,8 @@ const submitButtonListener = () => {
 //function to submit the form
 const submitForm = () => {
   addItemToProject(); //add todo item to current Project
-  // displayItems(); //display todo items
+  removeForm();
+  displayItems(); //display todo items
 };
 
 //function to add item to the current project
@@ -188,5 +189,77 @@ const addItemToProject = () => {
     "input[name='priority']:checked"
   ).value;
 
-  console.log([title, description, dueDate, priority]);
+  //add todoitem to current project(for now default project)
+  const project = projects.getProjectList()[currentProjectIndex];
+  project.addTodoItem(title, description, dueDate, priority);
+};
+
+//function to display the list items of current project
+const displayItems = () => {
+  clearList(); //clears the list
+  const project = projects.getProjectList()[currentProjectIndex].getTodoList();
+  const projectId = projects.getProjectList()[currentProjectIndex].getId();
+  const list = document.querySelector("#list");
+
+  for (const item of project) {
+    // console.log(item.getTitle());
+    const title = item.getTitle();
+    const description = item.getDescription();
+    const dueDate = item.getDueDate();
+    const priority = item.getPriority();
+
+    list.append(
+      createTodoTile(
+        title,
+        description,
+        dueDate,
+        priority,
+        projectId,
+        item.getId()
+      )
+    );
+  }
+};
+
+//clears the list dom
+const clearList = () => {
+  const list = document.querySelector("#list");
+  list.innerHTML = "";
+};
+
+//create a dom tile for todoItem
+const createTodoTile = (
+  title,
+  description,
+  dueDate,
+  priority,
+  projectId,
+  itemId
+) => {
+  const tile = document.createElement("div");
+  tile.classList.add("todo-tile");
+  tile.dataset.projectId = projectId;
+  tile.dataset.itemId = itemId;
+
+  const tileTitle = document.createElement("div");
+  tileTitle.id = "#tile-title";
+  tileTitle.textContent = title;
+  tile.appendChild(tileTitle);
+
+  const tileDescription = document.createElement("div");
+  tileDescription.id = "#tile-description";
+  tileDescription.textContent = description;
+  tile.appendChild(tileDescription);
+
+  const tileDueDate = document.createElement("div");
+  tileDueDate.id = "#tile-due-date";
+  tileDueDate.textContent = dueDate;
+  tile.appendChild(tileDueDate);
+
+  const tilePriority = document.createElement("div");
+  tilePriority.id = "#tile-priority";
+  tilePriority.textContent = priority;
+  tile.appendChild(tilePriority);
+
+  return tile;
 };
