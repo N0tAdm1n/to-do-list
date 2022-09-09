@@ -5,14 +5,21 @@ const projects = (() => {
   let _projectCount = 0;
 
   const getProjectList = () => _projectList;
+  //increase project count
+  const increaseProjectCount = () => {
+    _projectCount++;
+  };
 
-  const addProject = (project) => {
-    _projectList.push(project);
+  const getProjectCount = () => _projectCount;
+
+  const addProject = (name) => {
+    const item = project(name, getProjectCount());
+    _projectList.push(item);
     increaseProjectCount();
   };
 
   //project factory
-  const project = (name = "", id = _projectCount) => {
+  const project = (name = "", id) => {
     let _name = name;
     let _todolist = [];
     const _id = id;
@@ -42,30 +49,35 @@ const projects = (() => {
       increaseItemCount();
     };
 
+    const deleteTodoItem = (itemId) => {
+      const itemIndex = getItemIndex(itemId);
+      _todolist.splice(itemIndex, 1);
+    };
+
+    const getItemIndex = (itemId) => {
+      for (let i = 0; i < _todolist.length; i++) {
+        if (_todolist[i].getId() == itemId) {
+          return i;
+        }
+      }
+    };
+
     return {
       getProjectName,
       getTodoList,
       addTodoItem,
       getItemCount,
       getId,
+      deleteTodoItem,
     };
   };
 
-  //
-
-  // addProject(project("Default"));
-  // const test = () => {
-  //   projects.getProjectList()[0].addTodoItem(todoItem("item1"));
-  //   const i = projects.getProjectList();
-  //   console.log(i[0].getTodoList()[0].getTitle());
-  // };
-
-  //increase project count
-  const increaseProjectCount = () => {
-    _projectCount++;
+  //add default project
+  const defaultProject = () => {
+    addProject("Today");
   };
 
-  const getProjectCount = () => _projectCount;
+  defaultProject();
 
   return {
     getProjectList,
