@@ -101,7 +101,7 @@ const createForm = () => {
 
   //
   //prority
-  const priority = document.createElement("div");
+  const priority = document.createElement("form");
   priority.id = "priority";
   //low priority
   const lowPriorityLabel = document.createElement("label");
@@ -220,6 +220,7 @@ const displayItems = () => {
     );
   }
   deleteTileButtonListener();
+  editTileButtonListener();
 };
 
 //clears the list dom
@@ -287,6 +288,31 @@ const deleteTileButtonListener = () => {
 
 function removeTodoItem() {
   const itemId = this.parentNode.dataset.itemId;
-  const projectId = this.parentNode.dataset.projectId;
-  //remove tile from project function
+  projects.getProjectList()[currentProjectIndex].deleteTodoItem(itemId);
+  this.parentNode.remove();
+}
+
+const editTileButtonListener = () => {
+  const editButtons = Array.from(document.querySelectorAll(".tile-edit-btn"));
+  editButtons.forEach((button) =>
+    button.addEventListener("click", editTodoItem)
+  );
+};
+
+function editTodoItem() {
+  const itemId = this.parentNode.dataset.itemId;
+  const parent = this.parentNode;
+
+  this.parentNode.insertBefore(createForm(), this.nextSibling);
+
+  const title = document.querySelector("#titleInput");
+  const description = document.querySelector("#descriptionInput");
+  const dueDate = document.querySelector("#dueDateInput");
+  const priority = document.querySelector("#priority").priority;
+
+  title.value = parent.querySelector(".tile-title").textContent;
+  description.value = parent.querySelector(".tile-description").textContent;
+  dueDate.value = parent.querySelector(".tile-due-date").textContent;
+  priority.value = parent.querySelector(".tile-priority").textContent;
+  // console.log(priority.value);
 }
