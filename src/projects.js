@@ -89,10 +89,24 @@ const projects = (() => {
 
   defaultProject();
 
+  const deleteProject = (projectId) => {
+    const projectIndex = getProjectIndex(projectId);
+    _projectList.splice(projectIndex, 1);
+  };
+
+  const getProjectIndex = (projectId) => {
+    for (let i = 0; i < _projectList.length; i++) {
+      if (_projectList[i].getId() == projectId) {
+        return i;
+      }
+    }
+  };
+
   return {
     getProjectList,
     addProject,
     getProjectCount,
+    deleteProject,
   };
 })();
 
