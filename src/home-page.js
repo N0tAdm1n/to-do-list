@@ -10,6 +10,16 @@ export const homepage = () => {
 
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";
+
+  const projectList = document.createElement("div");
+  projectList.id = "project-list";
+  sidebar.appendChild(projectList);
+
+  const createProjectButton = document.createElement("button");
+  createProjectButton.id = "create-project-btn";
+  createProjectButton.textContent = "New Project";
+  sidebar.appendChild(createProjectButton);
+
   content.appendChild(sidebar);
 
   const todolist = document.createElement("div");
@@ -31,8 +41,6 @@ export const homepage = () => {
   const footer = document.createElement("div");
   footer.id = "footer";
   content.appendChild(footer);
-
-  // console.log(projects.getProjectList()[currentProject].getProjectName());
 };
 
 //add button event listener
@@ -330,6 +338,4 @@ function editTodoItem() {
     );
     displayItems();
   });
-
-  // displayItems();
 }
