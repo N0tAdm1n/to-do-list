@@ -41,6 +41,53 @@ export const homepage = () => {
   const footer = document.createElement("div");
   footer.id = "footer";
   content.appendChild(footer);
+
+  displayProjects();
+};
+
+//function to display projects
+const displayProjects = () => {
+  clearProjectList();
+  const projectList = document.querySelector("#project-list");
+
+  for (const project of projects.getProjectList()) {
+    const name = project.getProjectName();
+    const projectId = project.getId();
+
+    // console.log(name, projectId);
+
+    projectList.append(createProjectTile(name, projectId));
+  }
+};
+
+// function to clear project list
+const clearProjectList = () => {
+  const projectList = document.querySelector("#project-list");
+  projectList.innerHTML = "";
+};
+
+// function to create a project tile
+const createProjectTile = (name, projectId) => {
+  const tile = document.createElement("div");
+  tile.classList.add("project-tile");
+  tile.dataset.projectId = projectId;
+
+  const tileName = document.createElement("div");
+  tileName.classList.add("project-tile-name");
+  tileName.textContent = name;
+  tile.appendChild(tileName);
+
+  const renameButton = document.createElement("button");
+  renameButton.classList.add("project-tile-rename-btn");
+  renameButton.textContent = "Rename";
+  tile.appendChild(renameButton);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("project-tile-delete-btn");
+  deleteButton.textContent = "Delete";
+  tile.appendChild(renameButton);
+
+  return tile;
 };
 
 //add button event listener
