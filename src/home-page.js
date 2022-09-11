@@ -314,5 +314,22 @@ function editTodoItem() {
   description.value = parent.querySelector(".tile-description").textContent;
   dueDate.value = parent.querySelector(".tile-due-date").textContent;
   priority.value = parent.querySelector(".tile-priority").textContent;
-  // console.log(priority.value);
+
+  const project = projects.getProjectList()[currentProjectIndex];
+
+  //change add button to edit button
+  const editButton = document.querySelector("#submit");
+  editButton.textContent = "Edit";
+  editButton.addEventListener("click", () => {
+    project.changeTodoItem(
+      itemId,
+      title.value,
+      description.value,
+      dueDate.value,
+      priority.value
+    );
+    displayItems();
+  });
+
+  // displayItems();
 }
