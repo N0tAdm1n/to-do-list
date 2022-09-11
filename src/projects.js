@@ -62,6 +62,15 @@ const projects = (() => {
       }
     };
 
+    const changeTodoItem = (itemId, title, description, dueDate, priority) => {
+      const itemIndex = getItemIndex(itemId);
+      const item = _todolist[itemIndex];
+      item.changeTitle(title);
+      item.changeDescription(description);
+      item.changeDueDate(dueDate);
+      item.changePriority(priority);
+    };
+
     return {
       getProjectName,
       getTodoList,
@@ -69,6 +78,7 @@ const projects = (() => {
       getItemCount,
       getId,
       deleteTodoItem,
+      changeTodoItem,
     };
   };
 
