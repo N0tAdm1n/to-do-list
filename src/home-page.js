@@ -1,6 +1,6 @@
 import projects from "./projects";
 
-const currentProjectIndex = 0;
+let currentProjectIndex = 0;
 export const homepage = () => {
   const content = document.querySelector("#content");
 
@@ -58,6 +58,8 @@ const displayProjects = () => {
 
     projectList.append(createProjectTile(name, projectId));
   }
+
+  deleteProjectButtonListener();
 };
 
 // function to clear project list
@@ -85,12 +87,29 @@ const createProjectTile = (name, projectId) => {
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("project-tile-delete-btn");
   deleteButton.textContent = "Delete";
-  tile.appendChild(renameButton);
+  tile.appendChild(deleteButton);
 
   return tile;
 };
 
-//add button event listener
+const deleteProjectButtonListener = () => {
+  const deleteButtons = Array.from(
+    document.querySelectorAll(".project-tile-delete-btn")
+  );
+  deleteButtons.forEach((button) =>
+    button.addEventListener("click", removeProject)
+  );
+};
+
+function removeProject() {
+  console.log("hi");
+  const projectId = this.parentNode.dataset.projectId;
+  projects.deleteProject(projectId);
+  this.parentNode.remove();
+  currentProjectIndex = 0;
+}
+
+//add todoitem button event listener
 const addButtonListener = () => {
   if (!document.querySelector("#form")) {
     const addButton = document.querySelector("#addButton");
