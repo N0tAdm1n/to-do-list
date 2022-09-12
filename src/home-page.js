@@ -73,8 +73,22 @@ const displayProjects = () => {
     projectList.append(createProjectTile(name, projectId));
   }
 
+  projectTileListener();
   deleteProjectButtonListener();
 };
+
+//event listener for each project tile
+const projectTileListener = () => {
+  const projectTiles = Array.from(document.querySelectorAll(".project-tile"));
+  projectTiles.forEach((tile) => tile.addEventListener("click", changeProject));
+};
+
+// function to change current displayed project
+function changeProject() {
+  const projectId = this.dataset.projectId;
+  currentProjectIndex = projects.getProjectIndex(projectId);
+  displayItems();
+}
 
 // function to clear project list
 const clearProjectList = () => {
@@ -107,6 +121,7 @@ const createProjectTile = (name, projectId) => {
   return tile;
 };
 
+// even listener for delete button on project tile
 const deleteProjectButtonListener = () => {
   const deleteButtons = Array.from(
     document.querySelectorAll(".project-tile-delete-btn")
@@ -116,11 +131,15 @@ const deleteProjectButtonListener = () => {
   );
 };
 
+//function to remove project
 function removeProject() {
   const projectId = this.parentNode.dataset.projectId;
+  this.parentNode.removeEventListener("click", changeProject);
   projects.deleteProject(projectId);
   this.parentNode.remove();
+
   currentProjectIndex = 0;
+  displayItems();
 }
 
 //add todoitem button event listener
