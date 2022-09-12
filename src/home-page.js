@@ -16,7 +16,7 @@ export const homepage = () => {
   sidebar.appendChild(projectList);
 
   const createProjectButton = document.createElement("button");
-  createProjectButton.id = "create-project-btn";
+  createProjectButton.id = "new-project-btn";
   createProjectButton.textContent = "New Project";
   sidebar.appendChild(createProjectButton);
 
@@ -42,6 +42,20 @@ export const homepage = () => {
   footer.id = "footer";
   content.appendChild(footer);
 
+  displayProjects();
+  newProjectButtonListener();
+};
+
+//event listener for new project button
+const newProjectButtonListener = () => {
+  const button = document.querySelector("#new-project-btn");
+  button.addEventListener("click", createNewProject);
+};
+
+//function to create new project
+const createNewProject = () => {
+  const name = prompt("Enter project name: ");
+  projects.addProject(name);
   displayProjects();
 };
 
@@ -79,16 +93,17 @@ const createProjectTile = (name, projectId) => {
   tileName.textContent = name;
   tile.appendChild(tileName);
 
-  const renameButton = document.createElement("button");
-  renameButton.classList.add("project-tile-rename-btn");
-  renameButton.textContent = "Rename";
-  tile.appendChild(renameButton);
+  if (projectId > 0) {
+    const renameButton = document.createElement("button");
+    renameButton.classList.add("project-tile-rename-btn");
+    renameButton.textContent = "Rename";
+    tile.appendChild(renameButton);
 
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("project-tile-delete-btn");
-  deleteButton.textContent = "Delete";
-  tile.appendChild(deleteButton);
-
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("project-tile-delete-btn");
+    deleteButton.textContent = "Delete";
+    tile.appendChild(deleteButton);
+  }
   return tile;
 };
 
@@ -102,7 +117,6 @@ const deleteProjectButtonListener = () => {
 };
 
 function removeProject() {
-  console.log("hi");
   const projectId = this.parentNode.dataset.projectId;
   projects.deleteProject(projectId);
   this.parentNode.remove();
