@@ -57,6 +57,11 @@ const createNewProject = () => {
   const name = prompt("Enter project name: ");
   projects.addProject(name);
   displayProjects();
+
+  const projectId =
+    document.querySelector("#project-list").lastChild.dataset.projectId;
+  currentProjectIndex = projects.getProjectIndex(projectId);
+  displayItems();
 };
 
 //function to display projects
@@ -67,8 +72,6 @@ const displayProjects = () => {
   for (const project of projects.getProjectList()) {
     const name = project.getProjectName();
     const projectId = project.getId();
-
-    // console.log(name, projectId);
 
     projectList.append(createProjectTile(name, projectId));
   }
