@@ -77,6 +77,7 @@ const displayProjects = () => {
   }
 
   projectTileListener();
+  renameProjectButtonListener();
   deleteProjectButtonListener();
 };
 
@@ -124,7 +125,7 @@ const createProjectTile = (name, projectId) => {
   return tile;
 };
 
-// even listener for delete button on project tile
+// event listener for delete button on project tile
 const deleteProjectButtonListener = () => {
   const deleteButtons = Array.from(
     document.querySelectorAll(".project-tile-delete-btn")
@@ -143,6 +144,27 @@ function removeProject() {
 
   currentProjectIndex = 0;
   displayItems();
+}
+
+// event listener for rename button on project tile
+const renameProjectButtonListener = () => {
+  const renameButtons = Array.from(
+    document.querySelectorAll(".project-tile-rename-btn")
+  );
+  renameButtons.forEach((button) =>
+    button.addEventListener("click", renameProject)
+  );
+};
+
+//function to rename project
+function renameProject() {
+  const projectId = this.parentNode.dataset.projectId;
+  const name = prompt("Enter project name: ");
+  projects
+    .getProjectList()
+    [projects.getProjectIndex(projectId)].changeProjectName(name);
+
+  this.parentNode.querySelector(".project-tile-name").textContent = name;
 }
 
 //add todoitem button event listener
