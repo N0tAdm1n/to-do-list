@@ -35,6 +35,10 @@ const projects = (() => {
 
     const getProjectName = () => _name;
 
+    const changeProjectName = (newName) => {
+      _name = newName;
+    };
+
     const getTodoList = () => _todolist;
 
     const addTodoItem = (title, description, dueDate, priority) => {
@@ -79,6 +83,7 @@ const projects = (() => {
       getId,
       deleteTodoItem,
       changeTodoItem,
+      changeProjectName,
     };
   };
 
@@ -107,9 +112,8 @@ const projects = (() => {
     addProject,
     getProjectCount,
     deleteProject,
+    getProjectIndex,
   };
 })();
-
-//testing new logic
 
 export default projects;
