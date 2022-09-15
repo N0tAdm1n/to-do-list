@@ -11,12 +11,14 @@ const todoItem = (
   let _dueDate = dueDate;
   let _priority = priority;
   const _id = id;
+  let _status = 0; //0 for not done, 1 for completed
 
   const getTitle = () => _title;
   const getDescription = () => _description;
   const getDueDate = () => _dueDate;
   const getPriority = () => _priority;
   const getId = () => _id;
+  const getStatus = () => _status;
 
   const changeTitle = (title) => {
     _title = title;
@@ -31,6 +33,10 @@ const todoItem = (
     _priority = priority;
   };
 
+  const changeStatus = (status) => {
+    _status = status;
+  };
+
   return {
     getTitle,
     getDescription,
@@ -41,6 +47,8 @@ const todoItem = (
     changeDescription,
     changeDueDate,
     changePriority,
+    getStatus,
+    changeStatus,
   };
 };
 
