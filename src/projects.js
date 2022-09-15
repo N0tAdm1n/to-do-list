@@ -75,6 +75,12 @@ const projects = (() => {
       item.changePriority(priority);
     };
 
+    const changeTodoItemStatus = (itemId, status) => {
+      const itemIndex = getItemIndex(itemId);
+      const item = _todolist[itemIndex];
+      item.changeStatus(status);
+    };
+
     return {
       getProjectName,
       getTodoList,
@@ -84,6 +90,7 @@ const projects = (() => {
       deleteTodoItem,
       changeTodoItem,
       changeProjectName,
+      changeTodoItemStatus,
     };
   };
 
