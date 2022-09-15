@@ -24,6 +24,15 @@ body {
 #header {
     grid-area: header;
     background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo {
+    font-size: 50px;
+    word-spacing: 20px;
+    letter-spacing: 4px;
 }
 
 #sidebar {
