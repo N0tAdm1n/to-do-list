@@ -339,6 +339,7 @@ const displayItems = () => {
     const description = item.getDescription();
     const dueDate = item.getDueDate();
     const priority = item.getPriority();
+    const status = item.getStatus();
 
     list.append(
       createTodoTile(
@@ -347,7 +348,8 @@ const displayItems = () => {
         dueDate,
         priority,
         projectId,
-        item.getId()
+        item.getId(),
+        status
       )
     );
   }
@@ -368,7 +370,8 @@ const createTodoTile = (
   dueDate,
   priority,
   projectId,
-  itemId
+  itemId,
+  status
 ) => {
   const tile = document.createElement("div");
   tile.classList.add("todo-tile");
@@ -407,7 +410,11 @@ const createTodoTile = (
 
   const tileStatusButton = document.createElement("button");
   tileStatusButton.classList.add("tile-status-btn");
-  tileStatusButton.textContent = "Complete";
+  if (status == 0) {
+    tileStatusButton.textContent = "Complete";
+  } else {
+    tileStatusButton.textContent = "Uncheck";
+  }
   tile.append(tileStatusButton);
 
   return tile;
