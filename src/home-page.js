@@ -405,6 +405,11 @@ const createTodoTile = (
   tileDeleteButton.textContent = "Delete";
   tile.appendChild(tileDeleteButton);
 
+  const tileStatusButton = document.createElement("button");
+  tileStatusButton.classList.add("tile-status-btn");
+  tileStatusButton.textContent = "Complete";
+  tile.append(tileStatusButton);
+
   return tile;
 };
 
