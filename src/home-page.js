@@ -298,6 +298,7 @@ const removeForm = () => {
   const form = document.querySelector("#form");
   // form.innerHTML = "";
   form.remove();
+  displayItems();
 };
 
 //submit Button listener
@@ -377,6 +378,7 @@ const createTodoTile = (
   tile.classList.add("todo-tile");
   tile.dataset.projectId = projectId;
   tile.dataset.itemId = itemId;
+  tile.dataset.status = status;
 
   const tileTitle = document.createElement("div");
   tileTitle.classList.add("tile-title");
@@ -398,6 +400,15 @@ const createTodoTile = (
   tilePriority.textContent = priority;
   tile.appendChild(tilePriority);
 
+  const tileStatusButton = document.createElement("button");
+  tileStatusButton.classList.add("tile-status-btn");
+  if (status == 0) {
+    tileStatusButton.textContent = "Complete";
+  } else {
+    tileStatusButton.textContent = "Uncheck";
+  }
+  tile.append(tileStatusButton);
+
   const tileEditButton = document.createElement("button");
   tileEditButton.classList.add("tile-edit-btn");
   tileEditButton.textContent = "Edit";
@@ -407,15 +418,6 @@ const createTodoTile = (
   tileDeleteButton.classList.add("tile-delete-btn");
   tileDeleteButton.textContent = "Delete";
   tile.appendChild(tileDeleteButton);
-
-  const tileStatusButton = document.createElement("button");
-  tileStatusButton.classList.add("tile-status-btn");
-  if (status == 0) {
-    tileStatusButton.textContent = "Complete";
-  } else {
-    tileStatusButton.textContent = "Uncheck";
-  }
-  tile.append(tileStatusButton);
 
   return tile;
 };
@@ -444,34 +446,40 @@ const editTileButtonListener = () => {
 };
 
 function editTodoItem() {
-  const itemId = this.parentNode.dataset.itemId;
-  const parent = this.parentNode;
+  if (!document.querySelector("#form")) {
+    const itemId = this.parentNode.dataset.itemId;
+    const parent = this.parentNode;
 
-  this.parentNode.insertBefore(createForm(), this.nextSibling);
+    parent.insertBefore(createForm(), this.previousSibling);
+    parent.querySelector(".tile-edit-btn").style.display = "none";
+    parent.querySelector(".tile-delete-btn").style.display = "none";
 
-  const title = document.querySelector("#titleInput");
-  const description = document.querySelector("#descriptionInput");
-  const dueDate = document.querySelector("#dueDateInput");
-  const priority = document.querySelector("#priority").priority;
+    const title = document.querySelector("#titleInput");
+    const description = document.querySelector("#descriptionInput");
+    const dueDate = document.querySelector("#dueDateInput");
+    const priority = document.querySelector("#priority").priority;
 
-  title.value = parent.querySelector(".tile-title").textContent;
-  description.value = parent.querySelector(".tile-description").textContent;
-  dueDate.value = parent.querySelector(".tile-due-date").textContent;
-  priority.value = parent.querySelector(".tile-priority").textContent;
+    title.value = parent.querySelector(".tile-title").textContent;
+    description.value = parent.querySelector(".tile-description").textContent;
+    dueDate.value = parent.querySelector(".tile-due-date").textContent;
+    priority.value = parent.querySelector(".tile-priority").textContent;
 
-  const project = projects.getProjectList()[currentProjectIndex];
+    const project = projects.getProjectList()[currentProjectIndex];
 
-  //change add button to edit button
-  const editButton = document.querySelector("#submit");
-  editButton.textContent = "Edit";
-  editButton.addEventListener("click", () => {
-    project.changeTodoItem(
-      itemId,
-      title.value,
-      description.value,
-      dueDate.value,
-      priority.value
-    );
-    displayItems();
-  });
+    //change add button to edit button
+    const editButton = document.querySelector("#submit");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", () => {
+      project.changeTodoItem(
+        itemId,
+        title.value,
+        description.value,
+        dueDate.value,
+        priority.value
+      );
+      displayItems();
+    });
+
+    cancelButtonListener();
+  }
 }
