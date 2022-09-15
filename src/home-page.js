@@ -356,6 +356,7 @@ const displayItems = () => {
   }
   deleteTileButtonListener();
   editTileButtonListener();
+  tileStatusButtonListener();
 };
 
 //clears the list dom
@@ -482,4 +483,30 @@ function editTodoItem() {
 
     cancelButtonListener();
   }
+}
+
+const tileStatusButtonListener = () => {
+  const statusButtons = Array.from(
+    document.querySelectorAll(".tile-status-btn")
+  );
+  statusButtons.forEach((button) =>
+    button.addEventListener("click", changeTileStatus)
+  );
+};
+
+function changeTileStatus() {
+  if (this.parentNode.dataset.status == 0) {
+    this.parentNode.dataset.status = 1;
+    this.textContent = "Uncheck";
+  } else {
+    this.parentNode.dataset.status = 0;
+    this.textContent = "Complete";
+  }
+
+  const project = projects.getProjectList()[currentProjectIndex];
+
+  project.changeTodoItemStatus(
+    this.parentNode.dataset.itemId,
+    this.parentNode.dataset.status
+  );
 }
