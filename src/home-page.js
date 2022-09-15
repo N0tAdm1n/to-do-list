@@ -6,6 +6,11 @@ export const homepage = () => {
 
   const header = document.createElement("div");
   header.id = "header";
+
+  const logo = document.createElement("h1");
+  logo.textContent = "todo || !todo";
+  header.append(logo);
+
   content.appendChild(header);
 
   const sidebar = document.createElement("div");
