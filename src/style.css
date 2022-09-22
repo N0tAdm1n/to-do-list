@@ -27,10 +27,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 #logo {
-    font-size: 50px;
+    font-size: 55px;
     word-spacing: 20px;
     letter-spacing: 4px;
 }
@@ -38,6 +39,47 @@ body {
 #sidebar {
     grid-area: sidebar;
     background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+#project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.project-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left:60px; */
+}
+
+.project-tile-name {
+    font-size: 20px;
+    /* margin-right: 50px; */
+}
+
+.project-tile-btn-container > button {
+    border-radius: 3px;
+    border: none;
+    padding: 2px;
+}
+
+hr {
+    width: 100%;
+}
+
+#new-project-btn {
+    font-size: 18px;
+    /* margin-top: 30px; */
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
 
 #todolist {
