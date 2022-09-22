@@ -42,7 +42,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 20px 15px;
     gap: 15px;
 }
 
@@ -50,24 +50,32 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
 }
 
 .project-tile {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    /* margin-left:60px; */
+    border: 2px solid transparent;
 }
 
 .project-tile-name {
     font-size: 20px;
-    /* margin-right: 50px; */
+    margin-right: auto;
+}
+
+.project-tile-btn-container {
+    margin-left: auto;
 }
 
 .project-tile-btn-container > button {
     border-radius: 3px;
     border: none;
     padding: 2px;
+}
+
+.active-project {
+    border: 2px solid white;
 }
 
 hr {
@@ -85,6 +93,17 @@ hr {
 #todolist {
     grid-area: todolist;
     background-color: blue;
+    /* scroll-behavior: smooth; */
+    overflow: auto;
+    display: flex;
+    justify-content:space-between;
+
+}
+
+#list {
+    /* display: flex;
+    flex-direction: column; */
+    padding: 10px 50px 10px;
 }
 
 #addButton {
