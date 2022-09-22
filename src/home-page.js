@@ -100,6 +100,9 @@ const projectTileListener = () => {
 function changeProject() {
   const projectId = this.dataset.projectId;
   currentProjectIndex = projects.getProjectIndex(projectId);
+  const projectTiles = Array.from(document.querySelectorAll(".project-tile"));
+  projectTiles.forEach((tile) => tile.classList.remove("active-project"));
+  this.classList.add("active-project");
   displayItems();
 }
 
