@@ -9,6 +9,7 @@ export const homepage = () => {
 
   const logo = document.createElement("h1");
   logo.textContent = "todo || !todo";
+  logo.id = "logo";
   header.append(logo);
 
   content.appendChild(header);
@@ -117,15 +118,20 @@ const createProjectTile = (name, projectId) => {
   tile.appendChild(tileName);
 
   if (projectId > 0) {
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("project-tile-btn-container");
+
     const renameButton = document.createElement("button");
     renameButton.classList.add("project-tile-rename-btn");
     renameButton.textContent = "Rename";
-    tile.appendChild(renameButton);
+    buttonContainer.appendChild(renameButton);
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("project-tile-delete-btn");
     deleteButton.textContent = "Delete";
-    tile.appendChild(deleteButton);
+    buttonContainer.appendChild(deleteButton);
+
+    tile.append(buttonContainer);
   }
   return tile;
 };
