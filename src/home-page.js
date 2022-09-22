@@ -21,6 +21,9 @@ export const homepage = () => {
   projectList.id = "project-list";
   sidebar.appendChild(projectList);
 
+  const divide = document.createElement("hr");
+  sidebar.append(divide);
+
   const createProjectButton = document.createElement("button");
   createProjectButton.id = "new-project-btn";
   createProjectButton.textContent = "New Project";
