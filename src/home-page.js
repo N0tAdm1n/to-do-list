@@ -34,10 +34,19 @@ export const homepage = () => {
   const todolist = document.createElement("div");
   todolist.id = "todolist";
 
+  const addTodoContainer = document.createElement("div");
+  addTodoContainer.id = "add-todo-container";
+
+  const projectName = document.createElement("div");
+  projectName.id = "project-name-container";
+  addTodoContainer.append(projectName);
+
   const addButton = document.createElement("div");
   addButton.id = "addButton";
   addButton.textContent = "+";
-  todolist.appendChild(addButton);
+  addTodoContainer.appendChild(addButton);
+
+  todolist.append(addTodoContainer);
 
   const list = document.createElement("div");
   list.id = "list";
@@ -154,10 +163,11 @@ const deleteProjectButtonListener = () => {
 
 //function to remove project
 function removeProject() {
-  const projectId = this.parentNode.dataset.projectId;
-  this.parentNode.removeEventListener("click", changeProject);
+  const projectId = this.parentNode.parentNode.dataset.projectId;
+  this.parentNode.parentNode.removeEventListener("click", changeProject);
   projects.deleteProject(projectId);
-  this.parentNode.remove();
+
+  this.parentNode.parentNode.remove();
 
   currentProjectIndex = 0;
   displayItems();
@@ -175,13 +185,14 @@ const renameProjectButtonListener = () => {
 
 //function to rename project
 function renameProject() {
-  const projectId = this.parentNode.dataset.projectId;
+  const projectId = this.parentNode.parentNode.dataset.projectId;
   const name = prompt("Enter project name: ");
   projects
     .getProjectList()
     [projects.getProjectIndex(projectId)].changeProjectName(name);
 
-  this.parentNode.querySelector(".project-tile-name").textContent = name;
+  this.parentNode.parentNode.querySelector(".project-tile-name").textContent =
+    name;
 }
 
 //add todoitem button event listener
@@ -347,8 +358,14 @@ const addItemToProject = () => {
 //function to display the list items of current project
 const displayItems = () => {
   clearList(); //clears the list
+  console.log(currentProjectIndex);
   const project = projects.getProjectList()[currentProjectIndex].getTodoList();
   const projectId = projects.getProjectList()[currentProjectIndex].getId();
+
+  const projectName = projects
+    .getProjectList()
+    [currentProjectIndex].getProjectName();
+  document.querySelector("#project-name-container").textContent = projectName;
   const list = document.querySelector("#list");
 
   for (const item of project) {
