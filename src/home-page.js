@@ -34,14 +34,14 @@ export const homepage = () => {
   const todolist = document.createElement("div");
   todolist.id = "todolist";
 
-  const list = document.createElement("div");
-  list.id = "list";
-  todolist.appendChild(list);
-
   const addButton = document.createElement("div");
   addButton.id = "addButton";
   addButton.textContent = "+";
   todolist.appendChild(addButton);
+
+  const list = document.createElement("div");
+  list.id = "list";
+  todolist.appendChild(list);
 
   addButton.addEventListener("click", addButtonListener);
 
@@ -188,7 +188,7 @@ function renameProject() {
 const addButtonListener = () => {
   if (!document.querySelector("#form")) {
     const addButton = document.querySelector("#addButton");
-    addButton.before(createForm());
+    addButton.after(createForm());
     submitButtonListener();
     cancelButtonListener();
   }
