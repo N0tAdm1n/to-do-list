@@ -43,7 +43,8 @@ export const homepage = () => {
 
   const addButton = document.createElement("div");
   addButton.id = "addButton";
-  addButton.textContent = "+";
+  addButton.classList.add("material-symbols-outlined");
+  addButton.textContent = "add_task";
   addTodoContainer.appendChild(addButton);
 
   todolist.append(addTodoContainer);
@@ -453,22 +454,30 @@ const createTodoTile = (
   tile.appendChild(tilePriority);
 
   const tileStatusButton = document.createElement("button");
-  tileStatusButton.classList.add("tile-status-btn");
+  tileStatusButton.classList.add(
+    "tile-status-btn",
+    "material-symbols-outlined"
+  );
   if (status == 0) {
-    tileStatusButton.textContent = "Complete";
+    tileStatusButton.textContent = "assignment_turned_in";
+    tileStatusButton.classList.remove("complete-todo");
   } else {
-    tileStatusButton.textContent = "Uncheck";
+    tileStatusButton.textContent = "assignment_turned_in";
+    tileStatusButton.classList.add("complete-todo");
   }
   tile.append(tileStatusButton);
 
   const tileEditButton = document.createElement("button");
-  tileEditButton.classList.add("tile-edit-btn");
-  tileEditButton.textContent = "Edit";
+  tileEditButton.classList.add("tile-edit-btn", "material-symbols-outlined");
+  tileEditButton.textContent = "edit_note";
   tile.appendChild(tileEditButton);
 
   const tileDeleteButton = document.createElement("button");
-  tileDeleteButton.classList.add("tile-delete-btn");
-  tileDeleteButton.textContent = "Delete";
+  tileDeleteButton.classList.add(
+    "tile-delete-btn",
+    "material-symbols-outlined"
+  );
+  tileDeleteButton.textContent = "delete";
   tile.appendChild(tileDeleteButton);
 
   return tile;
@@ -548,10 +557,12 @@ const tileStatusButtonListener = () => {
 function changeTileStatus() {
   if (this.parentNode.dataset.status == 0) {
     this.parentNode.dataset.status = 1;
-    this.textContent = "Uncheck";
+    this.textContent = "assignment_turned_in";
+    this.classList.add("complete-todo");
   } else {
     this.parentNode.dataset.status = 0;
-    this.textContent = "Complete";
+    this.textContent = "assignment_turned_in";
+    this.classList.remove("complete-todo");
   }
 
   const project = projects.getProjectList()[currentProjectIndex];
