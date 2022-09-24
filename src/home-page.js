@@ -61,6 +61,7 @@ export const homepage = () => {
   content.appendChild(footer);
 
   displayProjects();
+  displayItems();
   newProjectButtonListener();
 };
 
@@ -214,15 +215,18 @@ const createForm = () => {
   //title
   const title = document.createElement("div");
   title.id = "title";
+  title.classList.add("form-container");
 
   const titleLabel = document.createElement("label");
   titleLabel.textContent = "Title";
   titleLabel.htmlFor = "titleInput";
+  titleLabel.classList.add("form-label");
 
   title.appendChild(titleLabel);
 
   const titleInput = document.createElement("input");
   titleInput.id = "titleInput";
+  // titleInput.autofocus = true;
   title.appendChild(titleInput);
 
   form.appendChild(title);
@@ -230,10 +234,12 @@ const createForm = () => {
   //description
   const description = document.createElement("div");
   description.id = "description";
+  description.classList.add("form-container");
 
   const descriptionLabel = document.createElement("label");
   descriptionLabel.textContent = "Description";
   descriptionLabel.htmlFor = "descriptionInput";
+  descriptionLabel.classList.add("form-label");
 
   description.appendChild(descriptionLabel);
 
@@ -246,10 +252,13 @@ const createForm = () => {
   //duedate
   const dueDate = document.createElement("div");
   dueDate.id = "dueDate";
+  dueDate.classList.add("form-container");
 
   const dueDateLabel = document.createElement("label");
   dueDateLabel.textContent = "Date";
   dueDateLabel.htmlFor = "dueDateInput";
+  dueDateLabel.classList.add("form-label");
+
   dueDate.appendChild(dueDateLabel);
 
   const dueDateInput = document.createElement("input");
@@ -263,9 +272,17 @@ const createForm = () => {
   //prority
   const priority = document.createElement("form");
   priority.id = "priority";
+  priority.classList.add("form-container");
+
+  const priorityHeading = document.createElement("span");
+  priorityHeading.textContent = "Priority";
+  priorityHeading.classList.add("form-label");
+
+  priority.append(priorityHeading);
+
   //low priority
   const lowPriorityLabel = document.createElement("label");
-  lowPriorityLabel.textContent = "Low Priority";
+  lowPriorityLabel.textContent = "Low";
 
   const lowPriorityInput = document.createElement("input");
   lowPriorityInput.type = "radio";
@@ -277,7 +294,7 @@ const createForm = () => {
   priority.appendChild(lowPriorityLabel);
   //medium priority
   const mediumPriorityLabel = document.createElement("label");
-  mediumPriorityLabel.textContent = "Medium Priority";
+  mediumPriorityLabel.textContent = "Medium";
 
   const mediumPriorityInput = document.createElement("input");
   mediumPriorityInput.type = "radio";
@@ -288,7 +305,7 @@ const createForm = () => {
   priority.appendChild(mediumPriorityLabel);
   //high priority
   const highPriorityLabel = document.createElement("label");
-  highPriorityLabel.textContent = "High Priority";
+  highPriorityLabel.textContent = "High";
 
   const highPriorityInput = document.createElement("input");
   highPriorityInput.type = "radio";
