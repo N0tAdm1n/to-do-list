@@ -2,7 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color-scheme: light;
 }
+
+html {
+    color-scheme: light;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+  }
 
 body {
     height: 100vh;
@@ -23,11 +36,12 @@ body {
 
 #header {
     grid-area: header;
-    background-color: red;
+    background-color: #2E3138;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
+    color: #E8F1F2;
 }
 
 #logo {
@@ -38,12 +52,15 @@ body {
 
 #sidebar {
     grid-area: sidebar;
-    background-color: green;
+    background-color: #2E3138;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 15px;
     gap: 15px;
+    border-right-width:2px;
+    border-right-style: solid;
+    border-right-color: #E8F1F2;
 }
 
 #project-list {
@@ -63,6 +80,7 @@ body {
 .project-tile-name {
     font-size: 20px;
     margin-right: auto;
+    color: #E8F1F2;
 }
 
 .project-tile-btn-container {
@@ -76,25 +94,30 @@ body {
 }
 
 .active-project {
-    border: 2px solid white;
+    border: 2px solid #1B98E0;
 }
 
 hr {
     width: 100%;
+    background-color: #E8F1F2;
+    height: 3px;
 }
 
 #new-project-btn {
     font-size: 18px;
-    padding: 5px;
-    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px 8px;
+    border-radius: 7px;
     border: none;
+    color: #2E3138;
+    background-color: #E8F1F2;
 }
 
 #todolist {
     position: relative;
 
     grid-area: todolist;
-    background-color: blue;
+    background-color: #2E3138;
     /* scroll-behavior: smooth; */
     overflow: auto;
 
@@ -116,6 +139,7 @@ hr {
 #project-name-container{
     font-size: 32px;
     margin-left: auto;
+    color: #1B98E0;
 }
 
 #list {
@@ -136,16 +160,18 @@ hr {
     font-size: 20px;
 
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr 1fr;
+    grid-template-columns: 8fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 2fr 1fr;
     grid-template-areas: 
         "tile-title tile-status-btn tile-edit-btn tile-delete-btn"
         "tile-description tile-description tile-description tile-description"
-        "tile-due-date tile-due-date tile-priority tile-priority";
+        "tile-due-date tile-priority tile-priority tile-priority";
 }
 
 .tile-title {
     grid-area: tile-title;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .tile-description {
@@ -172,13 +198,42 @@ hr {
     grid-area: tile-delete-btn;
 }
 
+.todo-tile > button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    justify-self: center;
+}
+
+.tile-status-btn.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.tile-status-btn.material-symbols-outlined.complete-todo {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
+
 #addButton {
     height: 50px;
     width: 50px;
-    font-size: larger;
-    background-color: white;
+    font-size: 40px;
+    background-color: #E8F1F2;
     margin-left: auto;
     margin-right: 20px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #form {
@@ -193,8 +248,8 @@ hr {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
-
-    padding: 10px 20px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .form-container {
@@ -239,5 +294,5 @@ input {
 
 #footer {
     grid-area: footer;
-    background-color: yellow;
+    background-color: #2E3138;
 }
