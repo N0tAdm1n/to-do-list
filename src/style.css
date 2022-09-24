@@ -57,6 +57,7 @@ body {
     display: flex;
     align-items: center;
     border: 2px solid transparent;
+    padding: 2px 5px;
 }
 
 .project-tile-name {
@@ -91,13 +92,30 @@ hr {
 }
 
 #todolist {
+    position: relative;
+
     grid-area: todolist;
     background-color: blue;
     /* scroll-behavior: smooth; */
     overflow: auto;
     display: flex;
-    justify-content:space-between;
+    flex-direction: column;
+    align-items:center;
+    padding: 10px;
+}
 
+#add-todo-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* margin: 10px; */
+    /* gap: 20rem; */
+    width: 100%;
+}
+
+#project-name-container{
+    font-size: 32px;
+    margin-left: auto;
 }
 
 #list {
@@ -111,6 +129,63 @@ hr {
     width: 50px;
     font-size: larger;
     background-color: white;
+    margin-left: auto;
+}
+
+#form {
+    position: absolute;
+    border: 2px solid black;
+    background-color: white;
+
+
+    left: 0;
+    right: 0;
+    top: 100px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px 20px;
+}
+
+.form-container {
+    font-size: 20px;
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    padding: 3px;
+    margin: 3px 0px;
+}
+
+textarea {
+    font-size: 20px;
+    height: 70px;
+    resize: none;
+}
+
+input {
+    font-size: 20px;
+}
+
+#priority {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-label {
+    color: red;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+#form > button {
+    margin: 5px;
+    height: 30px;
+    width: fit-content;
+    padding: 2px 5px;
+    font-size: 20px;
 }
 
 #footer {
