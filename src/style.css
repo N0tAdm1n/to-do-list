@@ -14,7 +14,8 @@ html {
     'FILL' 1,
     'wght' 700,
     'GRAD' 0,
-    'opsz' 48
+    'opsz' 48;
+    font-weight: 500;
   }
 
 body {
@@ -73,18 +74,23 @@ body {
 .project-tile {
     display: flex;
     align-items: center;
-    border: 2px solid transparent;
-    padding: 2px 5px;
+    border: 1px solid transparent;
+    padding: 4px 5px;
+    border-radius: 4px;
 }
 
 .project-tile-name {
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 500;
     margin-right: auto;
+    margin-left: 10px;
     color: #E8F1F2;
 }
 
 .project-tile-btn-container {
-    margin-left: auto;
+    /* margin-left: auto; */
+    display: flex;
+    gap: 4px;
 }
 
 .project-tile-btn-container > button {
@@ -93,8 +99,17 @@ body {
     padding: 2px;
 }
 
+.project-tile-delete-btn {
+    background-color: #EE6352;
+    color: #E8F1F2;
+}
+
+.project-tile-rename-btn {
+    background-color: #E8F1F2;
+}
+
 .active-project {
-    border: 2px solid #1B98E0;
+    border: 2px solid #01FDF6;
 }
 
 hr {
@@ -209,6 +224,8 @@ hr {
     border-radius: 50%;
     border: none;
     justify-self: end;
+    font-size: 30px;
+    font-weight: 500px;
 }
 
 .tile-status-btn.material-symbols-outlined {
