@@ -4,10 +4,16 @@ const projects = (() => {
   let _projectList = [];
   let _projectCount = 0;
 
+  if (localStorage.getItem("project-list") !== null) {
+    _projectList = JSON.parse(localStorage.getItem("project-list"));
+    _projectCount = Number(localStorage.getItem("project-count"));
+  }
+
   const getProjectList = () => _projectList;
   //increase project count
   const increaseProjectCount = () => {
     _projectCount++;
+    updateLocalStorage();
   };
 
   const getProjectCount = () => _projectCount;
@@ -29,6 +35,7 @@ const projects = (() => {
 
     const increaseItemCount = () => {
       _todoItemCount++;
+      updateLocalStorage();
     };
 
     const getItemCount = () => _todoItemCount;
@@ -56,6 +63,7 @@ const projects = (() => {
     const deleteTodoItem = (itemId) => {
       const itemIndex = getItemIndex(itemId);
       _todolist.splice(itemIndex, 1);
+      updateLocalStorage();
     };
 
     const getItemIndex = (itemId) => {
@@ -104,6 +112,7 @@ const projects = (() => {
   const deleteProject = (projectId) => {
     const projectIndex = getProjectIndex(projectId);
     _projectList.splice(projectIndex, 1);
+    updateLocalStorage();
   };
 
   const getProjectIndex = (projectId) => {
@@ -113,6 +122,11 @@ const projects = (() => {
       }
     }
   };
+  //fucntion to update local storage
+  function updateLocalStorage() {
+    localStorage.setItem("project-list", JSON.stringify(_projectList));
+    localStorage.setItem("project-count", _projectCount);
+  }
 
   return {
     getProjectList,
