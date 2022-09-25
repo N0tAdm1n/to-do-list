@@ -59,6 +59,25 @@ export const homepage = () => {
 
   const footer = document.createElement("div");
   footer.id = "footer";
+
+  const credit = document.createElement("div");
+  credit.id = "credit";
+
+  const githubLogo = document.createElement("img");
+  githubLogo.id = "github-logo";
+  githubLogo.src = "https://img.icons8.com/fluency/344/github.png";
+
+  credit.append(githubLogo);
+
+  const link = document.createElement("a");
+  link.textContent = "Created by N0tAdm1n";
+  link.href = "https://github.com/N0tAdm1n";
+  link.target = "_blank";
+  link.id = "link";
+  credit.append(link);
+
+  footer.append(credit);
+
   content.appendChild(footer);
 
   displayProjects();
