@@ -139,13 +139,19 @@ const createProjectTile = (name, projectId) => {
     buttonContainer.classList.add("project-tile-btn-container");
 
     const renameButton = document.createElement("button");
-    renameButton.classList.add("project-tile-rename-btn");
-    renameButton.textContent = "Rename";
+    renameButton.classList.add(
+      "project-tile-rename-btn",
+      "material-symbols-outlined"
+    );
+    renameButton.textContent = "drive_file_rename_outline";
     buttonContainer.appendChild(renameButton);
 
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("project-tile-delete-btn");
-    deleteButton.textContent = "Delete";
+    deleteButton.classList.add(
+      "project-tile-delete-btn",
+      "material-symbols-outlined"
+    );
+    deleteButton.textContent = "delete";
     buttonContainer.appendChild(deleteButton);
 
     tile.append(buttonContainer);
