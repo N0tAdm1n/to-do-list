@@ -325,4 +325,22 @@ input {
 #footer {
     grid-area: footer;
     background-color: #2E3138;
+    display: flex;
+    justify-content: center
+}
+
+#credit {
+    display: flex;
+    align-items: center;
+}
+
+#github-logo {
+    height: 30px;
+    width: 30px;
+}
+
+#link {
+    font-size: 22px;
+    color: #E8F1F2;     
+    text-decoration: none;
 }
